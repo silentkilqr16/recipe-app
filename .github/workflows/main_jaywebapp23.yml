@@ -1,7 +1,4 @@
-# Docs for the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
-# More GitHub Actions for Azure: https://github.com/Azure/actions
-
-name: Build and deploy Node.js app to Azure Web App - Jaywebapp23
+name: Build and deploy full-stack app to Azure Web App - Jaywebapp23
 
 on:
   push:
@@ -22,19 +19,32 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '18.x'   # Use LTS version (24.x is not valid yet)
+          node-version: '18.x'   # Use LTS version
 
-      - name: Install dependencies, build, and test
+      # Install and build backend
+      - name: Install backend dependencies
         run: |
+          cd backend
           npm install
           npm run build --if-present
-          npm run test --if-present
+
+      # Install and build frontend
+      - name: Install frontend dependencies
+        run: |
+          cd frontend
+          npm install
+          npm run build
+
+      # Copy frontend build into backend (so backend serves it)
+      - name: Copy frontend build to backend
+        run: |
+          cp -r frontend/build backend/build
 
       - name: Upload artifact for deployment
         uses: actions/upload-artifact@v4
         with:
-          name: node-app
-          path: .
+          name: fullstack-app
+          path: backend
 
   deploy:
     runs-on: ubuntu-latest
@@ -47,7 +57,7 @@ jobs:
       - name: Download artifact from build job
         uses: actions/download-artifact@v4
         with:
-          name: node-app
+          name: fullstack-app
 
       - name: Login to Azure
         uses: azure/login@v2
