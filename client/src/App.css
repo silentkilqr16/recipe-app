@@ -1,0 +1,100 @@
+body {
+  font-family: 'Poppins', sans-serif;
+  background: #fff8f0;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  text-align: center;
+  margin-top: 40px;
+}
+
+h1 {
+  color: #d35400;
+  font-size: 2.5rem;
+}
+
+button {
+  background: #e67e22;
+  color: white;
+  border: none;
+  padding: 12px 28px;
+  border-radius: 8px;
+  font-size: 18px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+button:hover {
+  background: #d35400;
+  transform: scale(1.05);
+}
+
+.card {
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.1);
+  display: inline-block;
+  margin-top: 30px;
+  padding: 25px;
+  width: 420px;
+  text-align: left;
+  animation: fadeIn 0.6s ease-in;
+}
+
+.card img {
+  width: 100%;
+  border-radius: 12px;
+  margin-bottom: 20px;
+}
+
+.ingredients li {
+  margin: 8px 0;
+  padding: 8px;
+  background: #fdf2e9;
+  border-radius: 6px;
+  list-style: none;
+}
+
+.ingredients li::before {
+  content: "🛒 ";
+}
+
+.steps li {
+  margin: 10px 0;
+  padding: 12px;
+  background: #ffe5d0;
+  border-left: 6px solid #e67e22;
+  border-radius: 6px;
+  font-weight: 500;
+}
+
+.steps li::before {
+  content: "🍴 ";
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.categories {
+  margin: 20px 0;
+}
+
+.categories button {
+  background: #f39c12;
+  color: white;
+  border: none;
+  padding: 10px 18px;
+  margin: 5px;
+  border-radius: 6px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.categories button:hover {
+  background: #d35400;
+  transform: scale(1.05);
+}
