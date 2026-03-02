@@ -1,7 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const app = express();
-const PORT = 5000;
+const PORT = process.env.PORT || 5000;
 
 app.use(cors());
 
@@ -426,9 +426,18 @@ const recipes = [
 }
 ];
 
+// Root route
+app.get("/", (req, res) => {
+  res.send("Recipe API is running ✅");
+});
+
+// All recipes
+app.get("/recipes", (req, res) => {
+  res.json(recipes);
+});
 
 // Random recipe by category
-app.get('/recipe/:category', (req, res) => {
+app.get("/recipe/:category", (req, res) => {
   const category = req.params.category;
   const filtered = recipes.filter(r => r.category.toLowerCase() === category.toLowerCase());
 
@@ -440,5 +449,6 @@ app.get('/recipe/:category', (req, res) => {
   res.json(random);
 });
 
-
+// ✅ Start the server
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+
